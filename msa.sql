@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 25 Novembre 2016 à 14:13
+-- Généré le :  Ven 02 Décembre 2016 à 11:30
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -72,21 +72,21 @@ INSERT INTO `commentaire` (`idCommentaire`, `idUser`, `contenu`, `idLieux`) VALU
 
 CREATE TABLE IF NOT EXISTS `event` (
   `idEvent` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Lieux_Sport_idSport` int(10) unsigned NOT NULL,
-  `Lieux_idLieux` int(10) unsigned NOT NULL,
+  `idSport` int(10) unsigned NOT NULL,
+  `idLieux` int(10) unsigned NOT NULL,
   `nomEvent` varchar(255) DEFAULT NULL,
   `dateEvent` date DEFAULT NULL,
   `descriptionEvent` text,
   `typeEvent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`idEvent`,`Lieux_Sport_idSport`,`Lieux_idLieux`),
-  KEY `Event_FKIndex1` (`Lieux_idLieux`,`Lieux_Sport_idSport`)
+  PRIMARY KEY (`idEvent`,`idSport`,`idLieux`),
+  KEY `Event_FKIndex1` (`idLieux`,`idSport`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `event`
 --
 
-INSERT INTO `event` (`idEvent`, `Lieux_Sport_idSport`, `Lieux_idLieux`, `nomEvent`, `dateEvent`, `descriptionEvent`, `typeEvent`) VALUES
+INSERT INTO `event` (`idEvent`, `idSport`, `idLieux`, `nomEvent`, `dateEvent`, `descriptionEvent`, `typeEvent`) VALUES
 (1, 2, 1, 'Tennis Championship', '2016-12-15', 'Venez défier vos amis ou ennemis à notre concours de Tennis. Récompense à la clé !', 'Concours Tennis'),
 (2, 1, 2, 'Foot By Night', '2017-01-11', 'Quel joueur de football n''a jamais rêvé de jouer de nuit ? Formez votre équipe et remportez la coupe !', 'Football');
 
@@ -98,20 +98,20 @@ INSERT INTO `event` (`idEvent`, `Lieux_Sport_idSport`, `Lieux_idLieux`, `nomEven
 
 CREATE TABLE IF NOT EXISTS `lieux` (
   `idLieux` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Sport_idSport` int(10) unsigned NOT NULL,
+  `idSport` int(10) unsigned NOT NULL,
   `nomLieux` varchar(255) DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   `typeLieux` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`idLieux`,`Sport_idSport`),
-  KEY `Lieux_FKIndex1` (`Sport_idSport`)
+  PRIMARY KEY (`idLieux`,`idSport`),
+  KEY `Lieux_FKIndex1` (`idSport`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `lieux`
 --
 
-INSERT INTO `lieux` (`idLieux`, `Sport_idSport`, `nomLieux`, `latitude`, `longitude`, `typeLieux`) VALUES
+INSERT INTO `lieux` (`idLieux`, `idSport`, `nomLieux`, `latitude`, `longitude`, `typeLieux`) VALUES
 (1, 1, 'Beaugrenelle Sports', 48.2, 70, 'Stade'),
 (2, 2, 'La Pampa', 77.6, 64.2, 'Gymnase'),
 (3, 3, 'SportsLand', 45.2, 65.8, 'Gymnase'),
@@ -127,19 +127,19 @@ INSERT INTO `lieux` (`idLieux`, `Sport_idSport`, `nomLieux`, `latitude`, `longit
 
 CREATE TABLE IF NOT EXISTS `partenaire` (
   `idPartenaire` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Utilisateur_idUser` int(10) unsigned NOT NULL,
+  `idUser` int(10) unsigned NOT NULL,
   `idSport` varchar(255) DEFAULT NULL,
   `préférences` varchar(255) DEFAULT NULL,
   `disponibilités` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`idPartenaire`,`Utilisateur_idUser`),
-  KEY `Partenaire_FKIndex1` (`Utilisateur_idUser`)
+  PRIMARY KEY (`idPartenaire`,`idUser`),
+  KEY `Partenaire_FKIndex1` (`idUser`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `partenaire`
 --
 
-INSERT INTO `partenaire` (`idPartenaire`, `Utilisateur_idUser`, `idSport`, `préférences`, `disponibilités`) VALUES
+INSERT INTO `partenaire` (`idPartenaire`, `idUser`, `idSport`, `préférences`, `disponibilités`) VALUES
 (1, 1, '1, 2, 4', '1', 'lundi, mardi, jeudi'),
 (2, 2, '1, 5, 6', '6', 'samedi, dimanche');
 

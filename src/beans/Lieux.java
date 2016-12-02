@@ -2,17 +2,17 @@ package beans;
 
 public class Lieux {
 	private int idLieux;
-	private int idSPort;
+	private int idSport;
 	private String nomLieux;
 	private float latitude, longitude;
 	private String typeLieux;
 	
 	
 	//Constructeur
-	public Lieux(int idLieux, int idSPort, String nomLieux, float latitude, float longitude, String typeLieux) {
+	public Lieux(int idLieux, int idSport, String nomLieux, float latitude, float longitude, String typeLieux) {
 		super();
 		this.idLieux = idLieux;
-		this.idSPort = idSPort;
+		this.idSport = idSport;
 		this.nomLieux = nomLieux;
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -35,13 +35,13 @@ public class Lieux {
 	}
 
 
-	public int getIdSPort() {
-		return idSPort;
+	public int getIdSport() {
+		return idSport;
 	}
 
 
-	public void setIdSPort(int idSPort) {
-		this.idSPort = idSPort;
+	public void setIdSport(int idSPort) {
+		this.idSport = idSPort;
 	}
 
 

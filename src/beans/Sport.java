@@ -12,7 +12,7 @@ public class Sport {
 	}
 	
 	public Sport(){
-		this((Integer) null,"");
+		this(0,"");
 	}
 
 	//Getter & Setter
