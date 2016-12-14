@@ -7,7 +7,7 @@ import beans.Sport;
 import common.DBAction;
 
 public class SportDAO {
-	public static Sport getSport(String id) throws SQLException {
+	public static Sport getSport(int id) throws SQLException {
         DBAction.DBConnexion();
         Sport Resultat  = new Sport();
         String                 req       = ("SELECT * FROM sport WHERE idSport='" + id + "'");
@@ -19,7 +19,8 @@ public class SportDAO {
         }
 
         while (DBAction.getRes().next()) {
-        	Resultat.setNomSport(DBAction.getRes().getString(1));
+        	Resultat.setIdSport(DBAction.getRes().getInt(1));
+        	Resultat.setNomSport(DBAction.getRes().getString(2));
         }
 
         DBAction.DBClose();
@@ -28,7 +29,23 @@ public class SportDAO {
     }   
 	
 	public static ArrayList getAllSport() throws SQLException {
-		return null;
+		DBAction.DBConnexion();
+		ArrayList<Sport> sports = new ArrayList<Sport>();
+		String req = ("SELECT * FROM sport");
+        try {
+            DBAction.setRes(DBAction.getStm().executeQuery(req));
+        } catch (SQLException ex) {
+        	System.out.println(ex.getErrorCode());
+        }
+
+        while (DBAction.getRes().next()) {
+        	Sport Resultat = new Sport(DBAction.getRes().getInt(1), DBAction.getRes().getString(2));
+        	sports.add(Resultat);
+        }
+
+        DBAction.DBClose();
+
+        return sports;
     }   
 	
 	public static int setSport(int id, String newNomSport) throws SQLException {

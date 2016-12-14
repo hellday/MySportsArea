@@ -54,6 +54,11 @@ public class Commentaire {
 		this.idLieux = idLieux;
 	}
 	
+	@Override
+	public String toString() {
+		return " [idCommentaire=" + idCommentaire + ", idUser=" + idUser + ", contenu=" + contenu + ", idLieux="
+				+ idLieux + "]";
+	}
 	
 	
 	

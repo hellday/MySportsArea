@@ -65,6 +65,10 @@ public class Partenaire {
 		this.disponibilités = disponibilités;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return " [idPartenaire=" + idPartenaire + ", idUser=" + idUser + ", idSport=" + idSport + ", préférences="
+				+ préférences + ", disponibilités=" + disponibilités + "]";
+	}
 	
 }

@@ -71,7 +71,11 @@ public class Admin {
 	}
 
 	
-	
+	@Override
+	public String toString() {
+		return " [idAdmin=" + idAdmin + ", pseudo=" + pseudo + ", logAdmin=" + logAdmin + ", mdpAdmin="
+				+ mdpAdmin + "]";
+	}
 	
 	
 	

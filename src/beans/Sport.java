@@ -32,7 +32,10 @@ public class Sport {
 		this.nomSport = nomSport;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return " [idSport=" + idSport + ", nomSport=" + nomSport + "]";
+	}
 	
 	
 

@@ -71,6 +71,13 @@ public class Utilisateur {
 		this.telUser = telUser;
 	}
 	
+	@Override
+	public String toString() {
+		return " [idUser=" + idUser + ", nomUser=" + nomUser + ", prenomUser=" + prenomUser + ", login="
+				+ login + ", mdp=" + mdp + ", adresseUser=" + adresseUser + ", telUser=" + telUser
+				+ "]";
+	}
+	
 }
 
 

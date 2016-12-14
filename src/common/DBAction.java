@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DBAction {
-  private static final String dbPath   = "jdbc:mysql://localhost/msaC";
+  private static final String dbPath   = "jdbc:mysql://localhost/msa";
   private static final String user     = "root";
   private static final String password = "";
   private static Connection   con      = null;

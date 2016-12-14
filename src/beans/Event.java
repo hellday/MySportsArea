@@ -101,7 +101,11 @@ public class Event {
 		this.typeEvent = typeEvent;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return " [idEvent=" + idEvent + ", idSport=" + idSport + ", idLieux=" + idLieux + ", nomEvent="
+				+ nomEvent + ", dateEvent=" + dateEvent + ", descriptionEvent=" + descriptionEvent + ", typeEvent=" + typeEvent + "]";
+	}
 	
 	
 }

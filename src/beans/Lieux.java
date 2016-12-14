@@ -84,6 +84,12 @@ public class Lieux {
 		this.typeLieux = typeLieux;
 	}
 	
+	@Override
+	public String toString() {
+		return " [idLieux=" + idLieux + ", idSport=" + idSport + ", nomLieux=" + nomLieux + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", typeLieux=" + typeLieux + "]";
+	}
+	
 	
 	
 
