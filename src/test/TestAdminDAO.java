@@ -16,7 +16,7 @@ import dao.AdminDAO;
 public class TestAdminDAO {
 
 	@Test 
-	public void test1GetAllAdmins() {
+	public void test4GetAllAdmins() {
 
 		ArrayList<Admin> admins = new ArrayList<>();
 		try {
@@ -40,23 +40,13 @@ public class TestAdminDAO {
 	}
 	
 	@Test
-	public void test2GetAdmin() {
+	public void test5GetAdmin() {
 	AdminDAO adminDAO = new AdminDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetAdmin) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-			Admin admins =	adminDAO.getAdmin(nb);
-			
-			if(admins.getIdAdmin() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(admins.toString());
-				ok = 0;
-			}
-		}
+		
+			System.out.println("(testGetAdmin) > ID 1 : ");
+			Admin admins =	adminDAO.getAdmin(1);
+			System.out.println(admins.toString());
 		
 	} 
 	catch (SQLException e) {
@@ -64,5 +54,41 @@ public class TestAdminDAO {
 
 	System.out.println("erreur de connexion");
 }
+	}
+	
+	@Test
+	public void test1AddAdmin() {
+		System.out.println("Ajout d'un admin Test");
+		try {
+			AdminDAO.addAdmin("pseudoTest","logTest","mdpTest");
+			AdminDAO.getAllAdmin();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("erreur de connexion");
+		}
+	}
+	
+	@Test
+	public void test3DeleteAdmin() {
+		System.out.println("Suppression d'un admin");
+		try {
+			AdminDAO.deleteUser(2);
+			AdminDAO.getAllAdmin();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("erreur de connexion");
+		}
+	}
+	
+	@Test
+	public void test2UpdateAdmin() {
+		System.out.println("Modification d'un admin");
+		try {
+			AdminDAO.updateAdmin(3, "newPseudo", "newLogin", "newMdp");
+			AdminDAO.getAllAdmin();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("erreur de connexion");
+		}
 	}
 }

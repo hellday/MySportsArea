@@ -48,6 +48,20 @@ public class SportDAO {
         return sports;
     }   
 	
+	// Ajoute un Sport
+				public static void addSport(String nomSport) throws SQLException {
+					DBAction.DBConnexion();
+					
+					String req = ("INSERT INTO sport (nomSport)  VALUES ('" + nomSport +"')");
+
+					try {
+						DBAction.getStm().executeUpdate(req);
+					} catch (SQLException ex) {
+						System.out.println("catch" + ex.getErrorCode());
+					}
+					DBAction.DBClose();
+				}
+	
 	public static int setSport(int id, String newNomSport) throws SQLException {
 		return 1;
     }   

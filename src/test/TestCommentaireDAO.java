@@ -17,7 +17,7 @@ public class TestCommentaireDAO {
 
 	
 	@Test 
-	public void testGetAllCommentaires() {
+	public void test1GetAllCommentaires() {
 
 		ArrayList<Commentaire> commentaires = new ArrayList<>();
 		try {
@@ -42,24 +42,14 @@ public class TestCommentaireDAO {
 	}
 	
 	@Test
-	public void testGetCommentaires() {
+	public void test2GetCommentaires() {
 	CommentaireDAO commentaireDAO = new CommentaireDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetCommentaires) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-			Commentaire commentaires =	commentaireDAO.getCommentaire(nb);
-			
-			if(commentaires.getIdCommentaire() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(commentaires.toString());
-				ok = 0;
-			}
-		}
 		
+			System.out.println("(testGetCommentaires) > ID 1 : ");
+			Commentaire commentaires =	commentaireDAO.getCommentaire(1);
+			System.out.println(commentaires.toString());
+			
 	} 
 	catch (SQLException e) {
 	e.printStackTrace();

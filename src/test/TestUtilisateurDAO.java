@@ -19,26 +19,13 @@ public class TestUtilisateurDAO {
 	public void testGetUser() {
 	UtilisateurDAO userDAO = new UtilisateurDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetUser) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-	        
-			Utilisateur user =	userDAO.getUser(nb);
-			
-			if(user.getIdUser() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(user.toString());
-				ok = 0;
-			}
-		}
+		
+			Utilisateur user =	userDAO.getUser(2);
+			System.out.println(user.toString());
 		
 	} 
 	catch (SQLException e) {
 	e.printStackTrace();
-
 	System.out.println("erreur de connexion");
 }
 	}
@@ -83,7 +70,7 @@ public class TestUtilisateurDAO {
 	
 	@Test
 	public void testDeleteUser() {
-		System.out.println("Suppresion d'un utilisateur");
+		System.out.println("Suppression d'un utilisateur");
 		try {
 			UtilisateurDAO.deleteUser(7);
 			UtilisateurDAO.getAllUser();
@@ -97,7 +84,7 @@ public class TestUtilisateurDAO {
 	public void testUpdateUser() {
 		System.out.println("Modification d'un utilisateur");
 		try {
-			UtilisateurDAO.updateUser(8, "newLogin", "newMdp");
+			UtilisateurDAO.updateUser(14, "newLogin", "newMdp");
 			UtilisateurDAO.getAllUser();
 		} catch (SQLException e) {
 			e.printStackTrace();

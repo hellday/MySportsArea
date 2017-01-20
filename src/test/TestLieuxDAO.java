@@ -16,7 +16,7 @@ import dao.LieuxDAO;
 public class TestLieuxDAO {
 
 	@Test
-	public void testGetAllLieux() {
+	public void test2GetAllLieux() {
 
 		ArrayList<Lieux> lieux = new ArrayList<>();
 		try {
@@ -41,23 +41,13 @@ public class TestLieuxDAO {
 	}
 	
 	@Test
-	public void testGetLieux() {
+	public void test3GetLieux() {
 	LieuxDAO lieuxDAO = new LieuxDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetLieux) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-			Lieux lieux =	lieuxDAO.getLieux(nb);
-			
-			if(lieux.getIdLieux() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(lieux.toString());
-				ok = 0;
-			}
-		}
+		
+			System.out.println("(testGetLieux) > ID 1 : ");
+			Lieux lieux =	lieuxDAO.getLieux(1);
+			System.out.println(lieux.toString());
 		
 	} 
 	catch (SQLException e) {
@@ -65,6 +55,18 @@ public class TestLieuxDAO {
 
 	System.out.println("erreur de connexion");
 }
+	}
+	
+	@Test
+	public void test1AddLieux() {
+		System.out.println("Ajout d'un lieux Test");
+		try {
+			LieuxDAO.addLieux("2","lieuxtest",50.0f ,50.0f ,"Stade");
+			LieuxDAO.getAllLieux();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("erreur de connexion");
+		}
 	}
 
 	

@@ -59,6 +59,21 @@ public class LieuxDAO {
         return lieux;
     }   
 	
+	// Ajoute un Lieux
+				public static void addLieux(String idSport, String nomLieux, float latitude, float longitude, String typeLieux) throws SQLException {
+					DBAction.DBConnexion();
+					
+					String req = ("INSERT INTO lieux (idSport, nomLieux, latitude, longitude, typeLieux)  VALUES ('"
+							+ idSport + "','" + nomLieux + "','" + latitude + "','" + longitude + "','" + typeLieux + "')");
+
+					try {
+						DBAction.getStm().executeUpdate(req);
+					} catch (SQLException ex) {
+						System.out.println("catch" + ex.getErrorCode());
+					}
+					DBAction.DBClose();
+				}
+	
 	public static int setLieux(int id, int newIdSport, String newNomLieux, float newLatitude, float newLongitude, String newTypeLieux) throws SQLException {
 		return 1;
     }   

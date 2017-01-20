@@ -18,24 +18,14 @@ import dao.UtilisateurDAO;
 public class TestSportDAO {
 
 	@Test
-	public void testGetSport() {
+	public void test3GetSport() {
 	SportDAO sportDAO = new SportDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetSport) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-			Sport sport =	sportDAO.getSport(nb);
-			
-			if(sport.getIdSport() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(sport.toString());
-				ok = 0;
-			}
-		}
 		
+			System.out.println("(testGetSport) > ID 1 : ");
+			Sport sport =	sportDAO.getSport(1);
+			System.out.println(sport.toString());
+	
 	} 
 	catch (SQLException e) {
 	e.printStackTrace();
@@ -45,7 +35,7 @@ public class TestSportDAO {
 	}
 
 	@Test
-	public void testGetAllSport() {
+	public void test2GetAllSport() {
 
 		ArrayList<Sport> sports = new ArrayList<>();
 		try {
@@ -68,4 +58,18 @@ public class TestSportDAO {
 			
 		}System.out.println();
 	}
+	
+	@Test
+	public void test1AddSport() {
+		System.out.println("Ajout d'un Sport Test");
+		try {
+			SportDAO.addSport("sportTest");
+			SportDAO.getAllSport();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("erreur de connexion");
+		}
+	}
+	
+
 }

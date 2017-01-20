@@ -16,7 +16,7 @@ import dao.EventDAO;
 public class TestEventDAO {
 
 	@Test
-	public void testGetAllEvents() {
+	public void test1GetAllEvents() {
 
 		ArrayList<Event> events = new ArrayList<>();
 		try {
@@ -41,24 +41,14 @@ public class TestEventDAO {
 	}
 	
 	@Test
-	public void testGetEvent() {
+	public void test2GetEvent() {
 	EventDAO eventDAO = new EventDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetEvent) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-			Event events =	eventDAO.getEvent(nb);
-			
-			if(events.getIdLieux() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(events.toString());
-				ok = 0;
-			}
-		}
 		
+			System.out.println("(testGetEvent) > ID 1 : ");
+			Event events =	eventDAO.getEvent(1);
+			System.out.println(events.toString());
+	
 	} 
 	catch (SQLException e) {
 	e.printStackTrace();

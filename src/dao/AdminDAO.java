@@ -56,6 +56,52 @@ public class AdminDAO {
 		
     }   
 	
+	
+	// Ajoute un Admin
+			public static void addAdmin(String pseudo, String logAdmin, String mdpAdmin) throws SQLException {
+				DBAction.DBConnexion();
+				
+				String req = ("INSERT INTO admin (pseudo, logAdmin, mdpAdmin)  VALUES ('"
+						+ pseudo + "','" + logAdmin + "','" + mdpAdmin + "')");
+
+				try {
+					DBAction.getStm().executeUpdate(req);
+				} catch (SQLException ex) {
+					System.out.println("catch" + ex.getErrorCode());
+				}
+				DBAction.DBClose();
+			}
+			
+	//Supprime un Admin via son ID
+			public static void deleteUser(int idAdmin) throws SQLException {
+				DBAction.DBConnexion();
+				
+				String req = ("DELETE FROM admin WHERE idAdmin ='"+ idAdmin +"'");
+				try {
+					DBAction.getStm().executeUpdate(req);
+					System.out.println("L'utilisateur avec l'id="+idAdmin+" a été supprimé.");
+				} catch (SQLException ex) {
+					System.out.println(req);
+					System.out.println("Requête non valide " + ex.getErrorCode());
+				}
+				DBAction.DBClose();
+			}
+			
+	//Modification d'un Admin via son ID
+			public static void updateAdmin(int idAdmin, String pseudo, String logAdmin, String mdpAdmin) throws SQLException {
+				DBAction.DBConnexion();
+				
+				String req = ("UPDATE admin SET pseudo='"+ pseudo +"', logAdmin='"+ logAdmin +"', mdpAdmin='"+ mdpAdmin +"' WHERE idAdmin ='"+ idAdmin +"'");
+				try {
+					DBAction.getStm().executeUpdate(req);
+					System.out.println("L'admin avec l'id "+idAdmin+" a été modifié.");
+				} catch (SQLException ex) {
+					System.out.println(req);
+					System.out.println("Requête non valide " + ex.getErrorCode());
+				}
+				DBAction.DBClose();
+			}
+	
 	public static int setAdmin(int id, String newPseudo, String newLogAdmin, String newMdpAdmin) throws SQLException {
 		return 1;
     }   

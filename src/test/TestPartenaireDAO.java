@@ -18,7 +18,7 @@ import dao.PartenaireDAO;
 public class TestPartenaireDAO {
 
 	@Test
-	public void testGetAllPartenaires() {
+	public void test1GetAllPartenaires() {
 
 		ArrayList<Partenaire> partenaires = new ArrayList<>();
 		try {
@@ -43,24 +43,14 @@ public class TestPartenaireDAO {
 	}
 	
 	@Test
-	public void testGetPartenaires() {
+	public void test2GetPartenaires() {
 	PartenaireDAO partenaireDAO = new PartenaireDAO();
 	try {
-		int ok = 1;
-		while(ok == 1){
-			System.out.println("(testGetPartenaire) > Choisissez un ID : ");
-			Scanner choix = new Scanner(System.in);
-	        int nb = choix.nextInt();
-			Partenaire partenaires =	partenaireDAO.getPartenaire(nb);
-			
-			if(partenaires.getIdPartenaire() == 0){
-				System.out.println("Cet ID n'existe pas");
-			}else {
-				System.out.println(partenaires.toString());
-				ok = 0;
-			}
-		}
 		
+			System.out.println("(testGetPartenaire) > ID 1 : ");
+			Partenaire partenaires =	partenaireDAO.getPartenaire(1);
+			System.out.println(partenaires.toString());
+			
 	} 
 	catch (SQLException e) {
 	e.printStackTrace();
