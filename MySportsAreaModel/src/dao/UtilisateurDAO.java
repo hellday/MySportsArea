@@ -34,6 +34,26 @@ public class UtilisateurDAO {
         return Resultat;
     }   
 	
+	public static Utilisateur getUserLogin(String log) throws SQLException {
+        DBAction.DBConnexion();
+        Utilisateur Resultat  = new Utilisateur();
+        String                 req       = ("SELECT * FROM utilisateur WHERE login='" + log + "'");
+
+        try {
+            DBAction.setRes(DBAction.getStm().executeQuery(req));
+        } catch (SQLException ex) {
+        	System.out.println(ex.getErrorCode());
+        }
+
+        while (DBAction.getRes().next()) {
+        	Resultat.setLogin(DBAction.getRes().getString(4));
+        }
+
+        DBAction.DBClose();
+
+        return Resultat;
+    }  
+	
 	//Affiche tout les Utilisateurs
 	public static ArrayList getAllUser() throws SQLException {
 		DBAction.DBConnexion();
