@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Préférences">
+    <menu>
+        <group android:checkableBehavior="single">
+            <item android:id="@+id/nav_lang"
+                android:icon="@android:drawable/ic_lock_lock"
+                android:title="Sport :"
+                app:actionLayout="@layout/spinner"/>
+            <item android:id="@+id/status"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Statut :"
+                app:actionLayout="@layout/spinner"/>
+            <item android:id="@+id/type"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Type :"
+                app:actionLayout="@layout/spinner"/>
+        </group>
+    </menu>
+    </item>
+
+    <item android:title="Navigation">
+        <menu>
+            <item android:id="@+id/myMap" android:icon="@android:drawable/ic_menu_mapmode"
+                android:title="MyMap" />
+            <item android:id="@+id/partenaires" android:icon="@android:drawable/ic_menu_search"
+                android:title="Partenaires" />
+            <item android:id="@+id/addLieux" android:icon="@android:drawable/ic_menu_add"
+                android:title="Ajouter un lieu" />
+        </menu>
+    </item>
+
+</menu>

@@ -34,10 +34,10 @@ public class UtilisateurDAO {
         return Resultat;
     }   
 	
-	public static Utilisateur getUserLogin(String log) throws SQLException {
+	public static Utilisateur getUserByLogin(String login) throws SQLException {
         DBAction.DBConnexion();
         Utilisateur Resultat  = new Utilisateur();
-        String                 req       = ("SELECT * FROM utilisateur WHERE login='" + log + "'");
+        String                 req       = ("SELECT * FROM utilisateur WHERE login='" + login + "'");
 
         try {
             DBAction.setRes(DBAction.getStm().executeQuery(req));
@@ -45,14 +45,20 @@ public class UtilisateurDAO {
         	System.out.println(ex.getErrorCode());
         }
 
-        while (DBAction.getRes().next()) {
+        if (DBAction.getRes().next()) {
+        	Resultat.setIdUser(DBAction.getRes().getInt(1));
+        	Resultat.setNomUser(DBAction.getRes().getString(2));
+        	Resultat.setPrenomUser(DBAction.getRes().getString(3));
         	Resultat.setLogin(DBAction.getRes().getString(4));
+        	Resultat.setMdp(DBAction.getRes().getString(5));
+        	Resultat.setAdresseUser(DBAction.getRes().getString(6));
+        	Resultat.setTelUser(DBAction.getRes().getString(7));
         }
 
         DBAction.DBClose();
 
         return Resultat;
-    }  
+    }   
 	
 	//Affiche tout les Utilisateurs
 	public static ArrayList getAllUser() throws SQLException {
@@ -104,10 +110,10 @@ public class UtilisateurDAO {
 			String req = ("DELETE FROM utilisateur WHERE idUser ='"+ idUser +"'");
 			try {
 				DBAction.getStm().executeUpdate(req);
-				System.out.println("L'utilisateur avec l'id="+idUser+" a été supprimé.");
+				System.out.println("L'utilisateur avec l'id="+idUser+" a Ã©tÃ© supprimÃ©.");
 			} catch (SQLException ex) {
 				System.out.println(req);
-				System.out.println("Requête non valide " + ex.getErrorCode());
+				System.out.println("RequÃªte non valide " + ex.getErrorCode());
 			}
 			DBAction.DBClose();
 		}
@@ -119,10 +125,10 @@ public class UtilisateurDAO {
 					String req = ("UPDATE utilisateur SET login='"+ login +"', mdp='"+ mdp +"' WHERE idUser ='"+ idUser +"'");
 					try {
 						DBAction.getStm().executeUpdate(req);
-						System.out.println("Le login et le mdp de l'utilisateur avec l'id "+idUser+" a été modifié.");
+						System.out.println("Le login et le mdp de l'utilisateur avec l'id "+idUser+"a Ã©tÃ© modifiÃ©.");
 					} catch (SQLException ex) {
 						System.out.println(req);
-						System.out.println("Requête non valide " + ex.getErrorCode());
+						System.out.println("RequÃªte non valide " + ex.getErrorCode());
 					}
 					DBAction.DBClose();
 				}

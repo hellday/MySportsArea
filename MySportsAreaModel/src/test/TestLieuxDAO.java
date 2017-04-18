@@ -34,7 +34,7 @@ public class TestLieuxDAO {
 		ListIterator<Lieux> list = lieux.listIterator();
 		int i = 1;
 		while (list.hasNext()) {
-			System.out.println("Lieu n°"+ i + list.next().toString());
+			System.out.println("Lieu nï¿½"+ i + list.next().toString());
 			i++;
 			
 		}System.out.println();
@@ -61,7 +61,7 @@ public class TestLieuxDAO {
 	public void test1AddLieux() {
 		System.out.println("Ajout d'un lieux Test");
 		try {
-			LieuxDAO.addLieux("2","lieuxtest",50.0f ,50.0f ,"Stade");
+			LieuxDAO.addLieux("2","lieuxtest", "testDescription", 50.0f ,50.0f ,"Stade");
 			LieuxDAO.getAllLieux();
 		} catch (SQLException e) {
 			e.printStackTrace();

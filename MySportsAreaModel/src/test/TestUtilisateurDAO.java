@@ -28,6 +28,21 @@ public class TestUtilisateurDAO {
 	e.printStackTrace();
 	System.out.println("erreur de connexion");
 }
+	} 
+	
+	@Test
+	public void testGetUserByLogin() {
+	UtilisateurDAO userDAO = new UtilisateurDAO();
+	try {
+		
+			Utilisateur user =	userDAO.getUserByLogin("login");
+			System.out.println(user.getLogin());
+		
+	} 
+	catch (SQLException e) {
+	e.printStackTrace();
+	System.out.println("erreur de connexion");
+}
 	}
 
 	@Test
@@ -50,13 +65,13 @@ public class TestUtilisateurDAO {
 		ListIterator<Utilisateur> list = users.listIterator();
 		int i = 1;
 		while (list.hasNext()) {
-			System.out.println("Utilisateur n°" + i + list.next().toString());
+			System.out.println("Utilisateur nï¿½" + i + list.next().toString());
 			i++;
 			
 		}System.out.println();
 	}
 	
-	@Test
+/*	@Test
 	public void test1AddUser() {
 		System.out.println("Ajout d'un utilisateur Test");
 		try {
@@ -90,7 +105,7 @@ public class TestUtilisateurDAO {
 			e.printStackTrace();
 			System.out.println("erreur de connexion");
 		}
-	}
+	} */
 
 	
 

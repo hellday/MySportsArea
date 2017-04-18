@@ -2,25 +2,29 @@ package beans;
 
 public class Lieux {
 	private int idLieux;
-	private int idSport;
+	private String idSport;
 	private String nomLieux;
+	private String description;
 	private float latitude, longitude;
+	private String status;
 	private String typeLieux;
 	
 	
 	//Constructeur
-	public Lieux(int idLieux, int idSport, String nomLieux, float latitude, float longitude, String typeLieux) {
+	public Lieux(int idLieux, String idSport, String nomLieux, String description, float latitude, float longitude, String status, String typeLieux) {
 		super();
 		this.idLieux = idLieux;
 		this.idSport = idSport;
 		this.nomLieux = nomLieux;
+		this.description = description;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.status = status;
 		this.typeLieux = typeLieux;
 	}
 	
 	public Lieux(){
-		this(0, 0, "", 0, 0, "");
+		this(0, "", "", "", 0, 0, "", "");
 	}
 
 
@@ -35,13 +39,13 @@ public class Lieux {
 	}
 
 
-	public int getIdSport() {
+	public String getIdSport() {
 		return idSport;
 	}
 
 
-	public void setIdSport(int idSPort) {
-		this.idSport = idSPort;
+	public void setIdSport(String idSport) {
+		this.idSport = idSport;
 	}
 
 
@@ -80,14 +84,31 @@ public class Lieux {
 	}
 
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public void setTypeLieux(String typeLieux) {
 		this.typeLieux = typeLieux;
 	}
 	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return " [idLieux=" + idLieux + ", idSport=" + idSport + ", nomLieux=" + nomLieux + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", typeLieux=" + typeLieux + "]";
+		return " [idLieux=" + idLieux + ", idSport=" + idSport + ", nomLieux=" + nomLieux + ", description=" + description + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", status=" + status + ", typeLieux=" + typeLieux + "]";
 	}
 	
 	
