@@ -36,10 +36,12 @@ import java.util.List;
 
 public class Lieux extends AppCompatActivity {
     private String title, description;
-    private TextView statusText, sportText;
+    private TextView statusText, sportText, nbLikes;
     private ListView mListView;
     private double latitude, longitude;
     private double currentLongitude, currentLatitude;
+
+    private int likes;
 
     private boolean permissionLocation;
 
@@ -61,6 +63,9 @@ public class Lieux extends AppCompatActivity {
         // Get Infos From Servlet
         new ServletGetInfosLieux().execute();
 
+        // Get Total Likes From Servlet
+        new ServletCountLikes().execute();
+
         // Set Values
         TextView titleText = (TextView) findViewById(R.id.title);
         titleText.setText(title);
@@ -70,6 +75,7 @@ public class Lieux extends AppCompatActivity {
 
         statusText = (TextView) findViewById(R.id.setStatus);
         sportText = (TextView) findViewById(R.id.setSport);
+        nbLikes = (TextView) findViewById(R.id.nbLikes);
 
         mListView = (ListView) findViewById(R.id.listView);
         afficherListeComments();
@@ -124,10 +130,14 @@ public class Lieux extends AppCompatActivity {
                 if (item.getTitle().equals("Like_off")) {
                     item.setIcon(R.drawable.hearth_on);
                     item.setTitle("Like_on");
+                    likes++;
+                    nbLikes.setText(String.valueOf(likes) + " likes");
                     Toast.makeText(Lieux.this, "Vous aimez : \n << " + title + " >>", Toast.LENGTH_SHORT).show();
                 }else {
                     item.setIcon(R.drawable.hearth_off);
                     item.setTitle("Like_off");
+                    likes--;
+                    nbLikes.setText(String.valueOf(likes) + " likes");
                     Toast.makeText(Lieux.this, "Vous n'aimez plus : \n << " + title + " >>", Toast.LENGTH_SHORT).show();
                 }
 
@@ -167,21 +177,6 @@ public class Lieux extends AppCompatActivity {
 
 
     public void addComment() {
-//        new AlertDialog.Builder(Lieux.this)
-//                .setTitle("Delete entry")
-//                .setMessage("Are you sure you want to delete this entry?")
-//                .setPositiveButton("Envoyer", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // continue with delete
-//                    }
-//                })
-//                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // do nothing
-//                    }
-//                })
-//                .setIcon(android.R.drawable.ic_dialog_email)
-//                .show();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Lieux.this);
         // Get the layout inflater
@@ -219,8 +214,8 @@ public class Lieux extends AppCompatActivity {
             URL url;
 
             // Replace Space to match GET Request
-            title = title.replaceAll(" ", "+");
-            String urlContent = "http://10.0.2.2:8080/MySportsAreaController/Serv?action=infosLieux&title=" + title;
+            String sendTitle = title.replaceAll(" ", "+");
+            String urlContent = "http://10.0.2.2:8080/MySportsAreaController/Serv?action=infosLieux&title=" + sendTitle;
             System.out.println(urlContent);
 
             try {
@@ -277,6 +272,48 @@ public class Lieux extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            super.onPostExecute(result);
+        }
+    }
+
+    // Tâche qui sert à récupérer le total de like du lieux
+    private class ServletCountLikes extends AsyncTask<Void, Void, Void> {
+
+        String textResult;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            URL url;
+
+            String sendTitle = title.replaceAll(" ", "+");
+            String urlContent = "http://10.0.2.2:8080/MySportsAreaController/Serv?action=countLikes&lieux=" + sendTitle;
+
+            try {
+                url = new URL(urlContent);
+                HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
+                urlCon.setRequestMethod("GET");
+                urlCon.setRequestProperty("Accept-Charset", "UTF-8");
+                urlCon.setRequestProperty("Content-Type", "text/xml; charset=UTF-8");
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlCon.getInputStream(), "UTF-8"));
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    textResult = inputLine;
+                }
+                in.close();
+
+            } catch(IOException e) {
+                e.printStackTrace();
+                textResult = e.toString();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            likes = Integer.parseInt(textResult);
+            String finalText = String.valueOf(likes) + " likes";
+            nbLikes.setText(finalText);
             super.onPostExecute(result);
         }
     }

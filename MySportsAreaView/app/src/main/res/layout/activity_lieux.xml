@@ -101,4 +101,16 @@
         android:textStyle="bold|italic"
         android:textSize="20sp"/>
 
+    <TextView
+        android:text="0 likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setStatus"
+        android:layout_alignStart="@+id/title"
+        android:id="@+id/nbLikes"
+        android:textColor="#810b0d"
+        android:textSize="16sp"
+        android:layout_marginStart="150dp"/>
+
+
 </RelativeLayout>
